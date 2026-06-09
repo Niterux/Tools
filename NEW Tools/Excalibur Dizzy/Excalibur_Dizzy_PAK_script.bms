@@ -1,0 +1,32 @@
+# Script by Bartlomiej Duda (Ikskoks)
+# Excalibur Dizzy (PC) PAK script
+
+
+# Ver    Date        Author               Comment
+# v1.0   09.06.2026  Bartlomiej Duda      -
+
+
+comtype ZLIB
+idstring "PAK\x01"
+get NUMBER_OF_FILES long
+get TOC_OFFSET long
+get COMP_TOC_SIZE long
+get UNCOMP_TOC_SIZE long
+get TOTAL_DATA_SIZE long
+
+clog MEMORY_FILE TOC_OFFSET COMP_TOC_SIZE 10000000
+
+for i = 0 < NUMBER_OF_FILES
+	get COMPRESSION_FLAG long -1
+	get FILE_OFFSET long -1
+	get COMP_FILE_SIZE long -1
+	get UNCOMP_FILE_SIZE long -1
+	get FILE_PATH string -1
+	
+	if COMPRESSION_FLAG == 1
+		
+		clog FILE_PATH FILE_OFFSET COMP_FILE_SIZE UNCOMP_FILE_SIZE
+	else
+		log FILE_PATH FILE_OFFSET COMP_FILE_SIZE
+	endif
+next i

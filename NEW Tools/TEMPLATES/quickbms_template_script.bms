@@ -3,7 +3,7 @@
 
 
 # Ver    Date        Author               Comment
-# v1.0   28.09.2025  Bartlomiej Duda      -
+# v1.0   09.06.2026  Bartlomiej Duda      -
 
 
 # idstring "\xCE\x0A\x89\x51"
@@ -18,6 +18,10 @@
 # 	clog FILE_PATH FILE_OFFSET FILE_SIZE FILE_SIZE
 # next i
 
+# decompress TOC to memory file
+get TOC_OFFSET long
+get COMP_TOC_SIZE long
+clog MEMORY_FILE TOC_OFFSET COMP_TOC_SIZE 10000000
 
 # logging names array to memory file
 # log MEMORY_FILE NAME_ARRAY_OFFSET NAME_ARRAY_SIZE
